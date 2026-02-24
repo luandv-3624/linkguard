@@ -1,5 +1,5 @@
 export const BASE_URL_API = `${
   process.env.NEXT_API_SERVER_URL
     ? `${process.env.NEXT_API_SERVER_URL}/api/`
-    : 'http://localhost:3000/api/'
+    : 'https://vn25-fs-check-luandv-3624.onrender.com/api/'
 }`;
