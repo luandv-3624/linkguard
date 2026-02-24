@@ -1,11 +1,14 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Mail, Lock, Eye, EyeOff, LogIn, Check } from 'lucide-react';
 import { useLogin } from '@/lib/api-hooks/use-login';
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -30,7 +33,8 @@ export default function LoginPage() {
           setSuccess(true);
 
           setTimeout(() => {
-            window.location.href = '/dashboard';
+            router.push('/dashboard');
+            router.refresh();
           }, 1500);
         },
       },

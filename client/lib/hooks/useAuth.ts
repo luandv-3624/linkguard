@@ -41,7 +41,8 @@ export function useAuth() {
   const logout = async () => {
     try {
       await axios.post(`${API_URL}/api/auth/logout`, {}, { withCredentials: true });
-      window.location.href = '/login';
+      router.push('/login');
+      router.refresh();
     } catch (error) {
       console.error('[Auth] Logout failed:', error);
     }
