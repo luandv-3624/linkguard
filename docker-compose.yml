@@ -1,0 +1,121 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: linkguard_postgres
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: linkguard
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - linkguard_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: linkguard_redis
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - linkguard_network
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: linkguard_server
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./server:/app
+      - node_modules_server:/app/node_modules
+    command: npm run start:dev
+
+    env_file:
+    - ./server/.env
+
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      API_PREFIX: /api
+      
+      DB_TYPE: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_DATABASE: linkguard
+      
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ''
+      
+      CACHE_TTL: 3600
+      
+      CORS_ORIGIN: 'http://localhost:3001,chrome-extension://*'
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - linkguard_network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: linkguard_client
+    restart: unless-stopped
+    ports:
+      - '3001:3000'
+    volumes:
+      - ./client:/app
+      - node_modules_client:/app/node_modules
+    command: npm run dev
+
+    env_file:
+      - ./client/.env
+
+    environment:
+      NODE_ENV: development
+      NEXT_PUBLIC_API_URL: http://server:3000
+      NEXT_API_SERVER_URL: http://localhost:3000
+    depends_on:
+      - server
+    networks:
+      - linkguard_network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  node_modules_server:
+    driver: local
+  node_modules_client:
+    driver: local
+
+networks:
+  linkguard_network:
+    driver: bridge

@@ -1,0 +1,41 @@
+# 📦 Node modules
+node_modules
+.pnpm
+.npm
+.yarn
+
+# 🔨 Next build output
+.next
+out
+dist
+build
+
+# 🧪 Testing
+coverage
+*.log
+
+# 🔐 Env
+.env
+.env.*
+!.env.example
+
+# 🧠 IDE
+.vscode
+.idea
+
+# 🐳 Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# 🗑️ OS
+.DS_Store
+Thumbs.db
+
+# 🔧 Git
+.git
+.gitignore
+
+# 📄 Docs
+README.md
+*.md

@@ -1,0 +1,74 @@
+.recent-scans {
+  margin-top: 24px;
+}
+
+.recent-scans-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.recent-scans-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recent-scan-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.recent-scan-item:hover {
+  background: #f9fafb;
+}
+
+.recent-scan-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.recent-scan-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.recent-scan-url {
+  font-size: 13px;
+  color: #1f2937;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-scan-meta {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 11px;
+}
+
+.recent-scan-level {
+  color: #6b7280;
+  text-transform: capitalize;
+}
+
+.recent-scan-time {
+  color: #9ca3af;
+}
+
+.recent-scan-score {
+  font-size: 16px;
+  font-weight: 700;
+  color: #6b7280;
+  flex-shrink: 0;
+}

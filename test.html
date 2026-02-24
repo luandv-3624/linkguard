@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkGuard - Comprehensive Test Cases</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #0a0e12;
+      color: #00ff41;
+    }
+    h1 {
+      text-align: center;
+      border-bottom: 2px solid #00ff41;
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: #00ff41;
+      margin-top: 40px;
+      border-left: 4px solid #00ff41;
+      padding-left: 10px;
+    }
+    .category {
+      margin-bottom: 40px;
+      background: #151b23;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #00ff4130;
+    }
+    .test-case {
+      margin: 10px 0;
+      padding: 10px;
+      background: #1f2937;
+      border-left: 3px solid #00ff41;
+    }
+    .test-case:hover {
+      background: #374151;
+    }
+    a {
+      color: #00f0ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      color: #ff007f;
+      text-decoration: underline;
+    }
+    .label {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .dangerous { background: #dc2626; color: white; }
+    .suspicious { background: #ea580c; color: white; }
+    .safe { background: #16a34a; color: white; }
+    .unknown { background: #6b7280; color: white; }
+    .description {
+      color: #9ca3af;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    .stats {
+      text-align: center;
+      padding: 20px;
+      background: #1f2937;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .stats div {
+      display: inline-block;
+      margin: 0 15px;
+    }
+    .count {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00ff41;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛡️ LinkGuard - Comprehensive Test Suite</h1>
+  
+  <div class="stats">
+    <div>
+      <div class="count" id="total">0</div>
+      <div>Total Tests</div>
+    </div>
+    <div>
+      <div class="count" style="color: #dc2626;" id="dangerous">0</div>
+      <div>Dangerous</div>
+    </div>
+    <div>
+      <div class="count" style="color: #ea580c;" id="suspicious">0</div>
+      <div>Suspicious</div>
+    </div>
+    <div>
+      <div class="count" style="color: #6b7280;" id="unknown">0</div>
+      <div>Unknown</div>
+    </div>
+    <div>
+      <div class="count" style="color: #16a34a;" id="safe">0</div>
+      <div>Safe</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>✅ Category 1: Safe URLs (Baseline)</h2>
+    <div class="test-case">
+      <a href="https://www.google.com">https://www.google.com</a>
+      <span class="label safe">SAFE</span>
+      <div class="description">Popular search engine - should be completely safe</div>
+    </div>
+    <div class="test-case">
+      <a href="https://github.com">https://github.com</a>
+      <span class="label safe">SAFE</span>
+      <div class="description">Code hosting platform - trusted domain</div>
+    </div>
+    <div class="test-case">
+      <a href="https://www.amazon.com">https://www.amazon.com</a>
+      <span class="label safe">SAFE</span>
+      <div class="description">E-commerce giant - legitimate site</div>
+    </div>
+    <div class="test-case">
+      <a href="https://stackoverflow.com">https://stackoverflow.com</a>
+      <span class="label safe">SAFE</span>
+      <div class="description">Developer Q&A - well-established domain</div>
+    </div>
+    <div class="test-case">
+      <a href="https://www.wikipedia.org">https://www.wikipedia.org</a>
+      <span class="label safe">SAFE</span>
+      <div class="description">Free encyclopedia - trusted source</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>⚠️ Category 2: Typosquatting Attacks</h2>
+    <div class="test-case">
+      <a href="https://www.gooogle.com">https://www.gooogle.com</a>
+      <span class="label dangerous">DANGEROUS</span>
+      <div class="description">Extra 'o' in Google - Levenshtein distance = 1</div>
+    </div>
+    <div class="test-case">
+      <a href="https://www.faceb00k.com">https://www.faceb00k.com</a>
+      <span class="label dangerous">DANGEROUS</span>
+      <div class="description">Numbers instead of letters - homoglyph attack</div>
+    </div>
+    <div class="test-case">
+      <a href="https://www.paypa1.com">https://www.paypa1.com</a>
+      <span class="label dangerous">DANGEROUS</span>
+      <div class="description">Letter 'l' → number '1' - PayPal impersonation</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🚨 Category 3: Suspicious Keywords</h2>
+    <div class="test-case">
+      <a href="https://secure-login-verify-account.com">https://secure-login-verify-account.com</a>
+      <span class="label suspicious">SUSPICIOUS</span>
+      <div class="description">Multiple keywords: secure, login, verify, account</div>
+    </div>
+    <div class="test-case">
+      <a href="https://amazon-update-payment-urgent.com">https://amazon-update-payment-urgent.com</a>
+      <span class="label dangerous">DANGEROUS</span>
+      <div class="description">Brand + urgent action keywords</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🌐 Category 4: Suspicious TLDs</h2>
+    <div class="test-case">
+      <a href="https://free-money-now.tk">https://free-money-now.tk</a>
+      <span class="label suspicious">SUSPICIOUS</span>
+      <div class="description">.tk domain - free Freenom TLD, commonly abused</div>
+    </div>
+    <div class="test-case">
+      <a href="https://download-software-crack.gq">https://download-software-crack.gq</a>
+      <span class="label suspicious">SUSPICIOUS</span>
+      <div class="description">.gq domain - free and risky</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🔢 Category 5: IP Address URLs</h2>
+    <div class="test-case">
+      <a href="http://192.168.1.1/admin">http://192.168.1.1/admin</a>
+      <span class="label dangerous">DANGEROUS</span>
+      <div class="description">Local IP with admin path - suspicious</div>
+    </div>
+    <div class="test-case">
+      <a href="http://123.45.67.89/login">http://123.45.67.89/login</a>
+      <span class="label dangerous">DANGEROUS</span>
+      <div class="description">Public IP with login - red flag</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>@ Category 6: @ Symbol Credential Theft</h2>
+    <div class="test-case">
+      <a href="http://google.com@evil-site.com/login">http://google.com@evil-site.com/login</a>
+      <span class="label dangerous">DANGEROUS</span>
+      <div class="description">User sees "google.com" but actually goes to "evil-site.com"</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🔓 Category 7: No HTTPS (Insecure)</h2>
+    <div class="test-case">
+      <a href="http://bank-login-portal.com">http://bank-login-portal.com</a>
+      <span class="label suspicious">SUSPICIOUS</span>
+      <div class="description">Banking site without HTTPS - major red flag</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>📏 Category 8: Excessively Long URLs</h2>
+    <div class="test-case">
+      <a href="https://this-is-a-very-long-domain-name-that-tries-to-hide-the-real-malicious-intent-by-making-it-hard-to-read.com/login">https://this-is-a-very-long-domain-name-that-tries-to-hide-the-real-malicious-intent-by-making-it-hard-to-read.com/login</a>
+      <span class="label suspicious">SUSPICIOUS</span>
+      <div class="description">Domain > 30 chars - hiding malicious intent</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🔗 Category 9: Excessive Subdomains & Hyphens</h2>
+    <div class="test-case">
+      <a href="https://login.secure.verify.account.paypal-update.com">https://login.secure.verify.account.paypal-update.com</a>
+      <span class="label dangerous">DANGEROUS</span>
+      <div class="description">5 subdomains - creating illusion of legitimacy</div>
+    </div>
+    <div class="test-case">
+      <a href="https://secure-login-verify-account-now.com">https://secure-login-verify-account-now.com</a>
+      <span class="label suspicious">SUSPICIOUS</span>
+      <div class="description">4 hyphens - trying to look legitimate</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🔗 Category 10: URL Shorteners (Redirect Risk)</h2>
+    <div class="test-case">
+      <a href="https://bit.ly/3xYz123">https://bit.ly/3xYz123</a>
+      <span class="label suspicious">SUSPICIOUS</span>
+      <div class="description">Bit.ly shortener - hides destination</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>☠️ Category 11: Known Malicious Patterns (VETO expected)</h2>
+    <div class="test-case">
+      <a href="https://paypal-limit-account.tk/signin">https://paypal-limit-account.tk/signin</a>
+      <span class="label dangerous">DANGEROUS</span>
+      <div class="description">PayPal phishing: brand + urgent + suspicious TLD</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🎯 Category 12: Edge Cases (Expect UNKNOWN)</h2>
+    
+    <div class="test-case">
+      <a href="javascript:alert('XSS')">javascript:alert('XSS')</a>
+      <span class="label unknown">UNKNOWN</span>
+      <div class="description">JavaScript protocol - Will cause parsing error on Server</div>
+    </div>
+
+    <div class="test-case">
+      <a href="data:text/html,<script>alert('XSS')</script>">data:text/html,<script>alert('XSS')</script></a>
+      <span class="label unknown">UNKNOWN</span>
+      <div class="description">Data URI - Not a standard web URL, triggers exception</div>
+    </div>
+
+    <div class="test-case">
+      <a href="file:///etc/passwd">file:///etc/passwd</a>
+      <span class="label unknown">UNKNOWN</span>
+      <div class="description">File protocol - Local file access, cannot be scanned</div>
+    </div>
+    
+    <div class="test-case">
+      <a href="https://this-domain-is-completely-fake-and-dead-12345.com">https://this-domain-is-completely-fake-and-dead-12345.com</a>
+      <span class="label unknown">UNKNOWN</span>
+      <div class="description">Dead domain (ENOTFOUND) - Total score drops below 40</div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>🛡️ Category 13: SSO & OAuth Whitelist (Legitimate Redirects)</h2>
+    
+    <div class="test-case">
+      <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=123">https://accounts.google.com/o/oauth2/v2/auth</a>
+      <span class="label safe">SAFE</span>
+      <div class="description">Google OAuth - Should bypass redirect penalty</div>
+    </div>
+
+    <div class="test-case">
+      <a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize">https://login.microsoftonline.com/...</a>
+      <span class="label safe">SAFE</span>
+      <div class="description">Microsoft SSO - Trusted domain whitelist</div>
+    </div>
+
+    <div class="test-case">
+      <a href="https://github.com/login/oauth/authorize">https://github.com/login/oauth/authorize</a>
+      <span class="label safe">SAFE</span>
+      <div class="description">Github OAuth - Legitimate redirect chain</div>
+    </div>
+    
+    <div class="test-case">
+      <a href="https://appleid.apple.com/auth/authorize">https://appleid.apple.com/auth/authorize</a>
+      <span class="label safe">SAFE</span>
+      <div class="description">Apple ID Sign in - Trusted domain whitelist</div>
+    </div>
+  </div>
+
+  <script>
+    // Count test cases
+    const testCases = document.querySelectorAll('.test-case');
+    const dangerous = document.querySelectorAll('.dangerous').length;
+    const suspicious = document.querySelectorAll('.suspicious').length;
+    const unknown = document.querySelectorAll('.unknown').length;
+    const safe = document.querySelectorAll('.safe').length;
+    
+    document.getElementById('total').textContent = testCases.length;
+    document.getElementById('dangerous').textContent = dangerous;
+    document.getElementById('suspicious').textContent = suspicious;
+    document.getElementById('unknown').textContent = unknown;
+    document.getElementById('safe').textContent = safe;
+
+    // Add click counter
+    let clickCount = 0;
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        clickCount++;
+        console.log(`Link ${clickCount} clicked:`, link.href);
+      });
+    });
+
+    console.log(`%c🛡️ LinkGuard Test Suite Loaded!`, 'color: #00ff41; font-size: 16px; font-weight: bold;');
+    console.log(`Total test cases: ${testCases.length}`);
+    console.log(`- Dangerous: ${dangerous}`);
+    console.log(`- Suspicious: ${suspicious}`);
+    console.log(`- Unknown: ${unknown}`);
+    console.log(`- Safe: ${safe}`);
+  </script>
+</body>
+</html>

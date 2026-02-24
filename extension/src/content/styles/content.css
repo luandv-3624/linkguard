@@ -1,0 +1,24 @@
+/* Scope styles to LinkGuard containers only */
+#linkguard-tooltip-root,
+#linkguard-warning-modal-root {
+  all: initial;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+#linkguard-tooltip-root *,
+#linkguard-warning-modal-root * {
+  all: revert;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Ensure button styles are not overridden */
+#linkguard-tooltip-root button,
+#linkguard-warning-modal-root button {
+  all: revert;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}

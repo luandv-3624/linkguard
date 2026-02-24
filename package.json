@@ -1,0 +1,29 @@
+{
+  "name": "linkguard",
+  "private": true,
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "lint-staged": {
+    "client/**/*.{ts,tsx}": [
+      "pnpm --filter client exec eslint --fix",
+      "pnpm --filter client exec prettier --write"
+    ],
+    "server/**/*.ts": [
+      "pnpm --filter server exec eslint --fix",
+      "pnpm --filter server exec prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.4.1",
+    "@commitlint/config-conventional": "^20.4.1",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.1"
+  }
+}

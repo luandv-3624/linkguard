@@ -1,0 +1,21 @@
+# Root workspace
+node_modules
+.pnpm-store
+
+# Environment (root level only)
+.env
+.env.*
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode
+.idea
+
+# TypeScript build info
+*.tsbuildinfo
