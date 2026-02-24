@@ -6,17 +6,17 @@ import { Globe, ChevronDown } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { locales, localeNames, localeFlags, type Locale } from '@/lib/i18n/config';
 
-function getInitialLocale(): Locale {
-  const savedLocale = localStorage.getItem('locale') as Locale;
-  if (savedLocale && locales.includes(savedLocale)) {
-    return savedLocale;
-  }
-  return 'en';
-}
-
 export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLocale, setCurrentLocale] = useState<Locale>(getInitialLocale);
+  const [currentLocale, setCurrentLocale] = useState<Locale>('en');
+
+  useEffect(() => {
+    const savedLocale = localStorage.getItem('locale') as Locale;
+    if (savedLocale && locales.includes(savedLocale)) {
+      setCurrentLocale(savedLocale);
+    }
+  }, []);
+
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
