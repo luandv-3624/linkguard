@@ -1,13 +1,11 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
 export function useAuth() {
-  const router = useRouter();
   const refreshTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -23,7 +21,7 @@ export function useAuth() {
         } catch (error) {
           console.error('[Auth] Token refresh failed:', error);
           // Refresh failed → redirect to login
-          router.push('/login');
+          window.location.href = '/login';
         }
       }, refreshInterval);
     };
