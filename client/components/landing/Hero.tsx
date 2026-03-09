@@ -111,7 +111,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2 }}
             >
-              <Link href="https://chrome.google.com/webstore" target="_blank">
+              <Link href="https://chromewebstore.google.com/detail/linkguard-malicious-url-p/lpbppbibepbdgamcflmecpjjaellioii" target="_blank">
                 <button className="group relative px-8 py-4 bg-transparent border-2 border-terminal-green text-terminal-green font-bold rounded-lg overflow-hidden transition-all hover:scale-105">
                   <span className="relative z-10 flex items-center gap-2">
                     <Download size={20} />
